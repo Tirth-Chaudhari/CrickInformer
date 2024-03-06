@@ -1,0 +1,22 @@
+
+.logo
+{
+    /* width:30%; */
+    /* height:15%; */
+}
+
+.navbar
+{
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    /* justify-self:center;  */
+    /* justify-content: space-around; */
+
+}
+.navbar ul
+{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
