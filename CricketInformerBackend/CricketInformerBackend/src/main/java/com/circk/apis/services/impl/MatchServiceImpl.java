@@ -33,6 +33,180 @@ public class MatchServiceImpl implements MatchService
 
     private final Object lock = new Object();
 
+    public List<List<String>> getRanking()
+    {
+                String url= "https://www.cricbuzz.com/cricket-stats/icc-rankings/men/batting";
+                String url1="https://www.cricbuzz.com/cricket-stats/icc-rankings/men/bowling";
+                String url2="https://www.cricbuzz.com/cricket-stats/icc-rankings/men/all-rounder";
+                String url3="https://www.cricbuzz.com/cricket-stats/icc-rankings/men/teams";
+                List<List<String >> l=new ArrayList<>();
+                try {
+                    Document doc = Jsoup.connect(url).get();
+                    Document doc1=Jsoup.connect(url1).get();
+                    Document doc2=Jsoup.connect(url2).get();
+                    Document doc3=Jsoup.connect(url3).get();
+
+//                    System.out.println(doc);
+                    Elements battingRank=doc.select(".cb-lst-itm");
+//                    System.out.println(battingRank);
+                    int count=0;
+                    for(Element ele:battingRank)
+                    {
+                         List<String> l1=new ArrayList<>();
+                            if(count>15)
+                            {
+                                break;
+                            }
+                            String img=ele.select(".cb-rank-plyr-img").attr("src");
+                            if(img.isBlank())
+                            {
+                                    System.out.println("in");
+                                    Element e1=ele.selectFirst(".cb-col-50");
+                                    img=e1.select(".lazy-loading").attr("src");
+
+                            }
+                            String name=ele.selectFirst(".cb-rank-plyr > a").text();
+                            String teamName=ele.select(".text-gray").text();
+                            String rank=ele.select(".pull-right").text();
+                            System.out.println(img);
+                            System.out.println(name);
+                            System.out.println(teamName);
+                            System.out.println(rank);
+                            System.out.println(count);
+                            l1.add(img);
+                            l1.add(name);
+                            l1.add(teamName);
+                            l1.add(rank);
+                            l1.add("Batting");
+                            l.add(l1);
+                            count++;
+
+                    }
+                    Elements bowlingRank=doc1.select(".cb-lst-itm");
+                    int count1=0;
+                    for(Element ele:bowlingRank)
+                    {
+                        List<String> l2=new ArrayList<>();
+                        if(count1>15)
+                        {
+                            break;
+                        }
+                        String img=ele.select(".cb-rank-plyr-img").attr("src");
+                        if(img.isBlank())
+                        {
+                            System.out.println("in");
+                            Element e1=ele.selectFirst(".cb-col-50");
+                            img=e1.select(".lazy-loading").attr("src");
+
+                        }
+                        String name=ele.selectFirst(".cb-rank-plyr > a").text();
+                        String teamName=ele.select(".text-gray").text();
+                        String rank=ele.select(".pull-right").text();
+                        System.out.println(img);
+                        System.out.println(name);
+                        System.out.println(teamName);
+                        System.out.println(rank);
+                        System.out.println(count);
+                        l2.add(img);
+                        l2.add(name);
+                        l2.add(teamName);
+                        l2.add(rank);
+                        l2.add("Bowling");
+                        l.add(l2);
+                        count1++;
+
+                    }
+                    Elements AllRoundergRank=doc2.select(".cb-lst-itm");
+                    int count3=0;
+                    for(Element ele:AllRoundergRank)
+                    {
+                        List<String>l3=new ArrayList<>();
+                        if(count3>15)
+                        {
+                            break;
+                        }
+                        String img=ele.select(".cb-rank-plyr-img").attr("src");
+                        if(img.isBlank())
+                        {
+                            System.out.println("in");
+                            Element e1=ele.selectFirst(".cb-col-50");
+                            img=e1.select(".lazy-loading").attr("src");
+
+                        }
+                        String name=ele.selectFirst(".cb-rank-plyr > a").text();
+                        String teamName=ele.select(".text-gray").text();
+                        String rank=ele.select(".pull-right").text();
+                        System.out.println(img);
+                        System.out.println(name);
+                        System.out.println(teamName);
+                        System.out.println(rank);
+                        System.out.println(count);
+                        l3.add(img);
+                        l3.add(name);
+                        l3.add(teamName);
+                        l3.add(rank);
+                        l3.add("AllRounder");
+                        l.add(l3);
+                        count3++;
+
+                    }
+
+
+                    Elements TeamRank=doc3.select(".cb-brdr-thin-btm");
+                    int count4=0;
+                    for(Element ele:TeamRank)
+                    {
+                        List<String> l4=new ArrayList<>();
+
+                        if(count4>11)
+                        {
+                            break;
+                        }
+                        Elements team=ele.select(".cb-lst-itm-sm");
+                        int j=0;
+                        String teamName="";
+                        String rating="";
+                        String points="";
+                        for(Element e1:team)
+                        {
+
+                            if(j==1)
+                            {
+                                teamName=e1.text();
+                            }
+                            else if(j==2)
+                            {
+                                rating= e1.text();
+                            }
+                            else if(j==3)
+                            {
+                                points=e1.text();
+
+                            }
+                            j++;
+                        }
+                        System.out.println(teamName);
+                        System.out.println(rating);
+                        System.out.println(points);
+                        l4.add(teamName);
+                        l4.add(rating);
+                        l4.add(points);
+                        l4.add("Teams");
+                        count4++;
+                        l.add(l4);
+
+
+                    }
+
+
+
+
+                }catch(IOException e)
+                {
+
+                }
+                return l;
+    }
 
 
     public List<Match> getHistoryMatches()
