@@ -44,6 +44,11 @@ public class MatchController
     {
         return new ResponseEntity<>(this.matchService.getUpcomingMatches(), HttpStatus.OK);
     }
+    @GetMapping("/ranking")
+    public ResponseEntity<List<List<String>>> getRanking()
+    {
+        return new ResponseEntity<>(this.matchService.getRanking()  ,HttpStatus.OK);
+    }
 
     @GetMapping
     public ResponseEntity<List<Match>> getAllMatches()
