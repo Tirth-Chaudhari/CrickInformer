@@ -14,6 +14,9 @@ public interface MatchService
 //    List<List<String>> getPointTable();
     List<List<String>> getUpcomingMatches();
     List<Match> getHistoryMatches();
+    List<List<String>> getRanking();
+
+
 
 
 }
