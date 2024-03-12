@@ -15,7 +15,7 @@ const NavBar = () => {
         <li><Link to={"/"} className="hover:text-gray-300 ">Live Matches</Link></li>
         <li><Link to={"/history"} className="hover:text-gray-300 ">History</Link></li>
         <li><Link to={"/upcoming"} className="hover:text-gray-300">Upcoming</Link></li>
-        <li><Link to={"/pointtable"} className="hover:text-gray-300">PointTable</Link></li>
+        <li><Link to={"/rankings/batting"} className="hover:text-gray-300">Rankings</Link></li>
         
       </ul>
     </nav>
