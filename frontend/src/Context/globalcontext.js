@@ -13,6 +13,18 @@ export const GlobalProvider=({children})=>
     const [MatchSquad,setMatchSquad]=useState([]);
     const [UpcomingMatch,setUpcoming]=useState([]);
     const [HistoryMatch,setHistory]=useState([]);
+    const [Rankings,setRanking]=useState([]);
+
+    const getRankings=async()=>
+    {
+        await axios.get(`http://localhost:8081/match/ranking`).then((response)=>
+        {
+            if(response){
+                   setRanking(response.data);
+            }
+
+       })
+    }
     const getHistoryMatches=async()=>
     {
         await axios.get(`http://localhost:8081/match/history`).then((response)=>
@@ -94,7 +106,8 @@ export const GlobalProvider=({children})=>
     return(
         <GlobalContext.Provider value={{getLiveMatch,Matches,getLiveTeamInformation,TeamInfo,BatsmanList,BawlerList,MatchSquad,
                                         getUpcomingMatches,UpcomingMatch,
-                                        getHistoryMatches,HistoryMatch}}>
+                                        getHistoryMatches,HistoryMatch,
+                                        getRankings,Rankings}}>
             {children}
         </GlobalContext.Provider>
     )
