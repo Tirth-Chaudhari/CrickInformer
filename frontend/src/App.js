@@ -9,6 +9,13 @@ import Upcoming from "./Component/Upcoming/Upcoming";
 import MatchInfo from "./Component/Matches/MatchInfo/MatchInfo";
 import ScoreCard from "./Component/Matches/MatchInfo/ScoreCard";
 import MatchSquad from "./Component/Matches/MatchInfo/MatchSquad";
+import Rankings from "./Component/Rankings/Ranking";
+import Bowling from "./Component/Rankings/Bowling";
+import AllRounders from "./Component/Rankings/AllRouders";
+import Teams from "./Component/Rankings/Teams";
+import Batting from "./Component/Rankings/Batting";
+import Ranking from "./Component/Rankings/Ranking";
+import AllRouders from "./Component/Rankings/AllRouders";
 const App=()=>
 {
   
@@ -29,6 +36,13 @@ const App=()=>
              <Route path="history/matchinfo" element={<MatchInfo/>}>           
                     <Route  index  element={<ScoreCard/>}/>
                     <Route path="squad" element={<MatchSquad/>}/>
+             </Route>
+             <Route path="rankings" element={<Ranking/>}>  
+                    <Route  index  path="batting" element={<Batting/>}/>
+                    <Route path="bowling" element={<Bowling />}/>
+                    <Route path="all-rounders" element={<AllRouders/>}/>
+                    <Route path="teams" element={<Teams/>}/>
+
              </Route>
              <Route index element={<Navigate to="/livematches" replace />} />
 
