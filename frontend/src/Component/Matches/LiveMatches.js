@@ -6,12 +6,13 @@ import { Link, useNavigate } from 'react-router-dom';
 const LiveMatches=()=>
 {
 
-    const {getLiveMatch,Matches,SetMatchLink,getLiveTeamInformation} =useGlobalContext();
+    const {getLiveMatch,Matches,SetMatchLink,getLiveTeamInformation,getRankings} =useGlobalContext();
     
    
     useEffect(()=>
     {
             getLiveMatch();
+            getRankings();
     },[])
     return (
         <div className='w-full lg:w-8/12 xl:w-8/12 mx-auto h-full bg-white-200 shadow-2xl mt-8 bg-gray-100 mb-8'>
